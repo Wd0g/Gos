@@ -4,7 +4,7 @@ import (
 	"flag"
 	"net/http"
 
-	"github.com/wd0g/GoShell/lib/server"
+	"github.com/Wd0g/GoShell/lib/server"
 
 	"ehang.io/nps/client"
 )

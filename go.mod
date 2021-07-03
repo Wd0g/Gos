@@ -1,4 +1,4 @@
-module github.com/wd0g/GoShell
+module github.com/Wd0g/GoShell
 
 go 1.16
 

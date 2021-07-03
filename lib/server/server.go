@@ -3,7 +3,7 @@ package server
 import (
 	"net/http"
 
-	"github.com/wd0g/GoShell/lib/common"
+	"github.com/Wd0g/GoShell/lib/common"
 )
 
 type Handler struct {
