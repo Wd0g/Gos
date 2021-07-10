@@ -3,8 +3,9 @@ Gos是一款专为[**蚁剑**](https://github.com/AntSwordProject/antSword/)编�
 
 蚁剑中支持的Shell类型：
 
-	- CMDLINUX
-	- CUSTOM
+- CMDLINUX
+- CUSTOM
+
 
 Gos使用Go语言编写，理论上只要编译通过可支持各种系统（我猜的），以下是测试可用的系统：
 
@@ -23,10 +24,10 @@ Gos使用Go语言编写，理论上只要编译通过可支持各种系统（我
 # 使用
 
 ```shell
-## 启动**CUSTOM**类型的Web服务: 该服务暂时只支持明文传输
+## 启动**CUSTOM**类型的Web服务
 ./gos -m custom -web-addr 0.0.0.0:9010 -web-pwd ant -web-decoder plain
 
-## 启动**CMDLINUX**类型的Web服务：该服务只支持Linux系统，编码支持[plain, base64]
+## 启动**CMDLINUX**类型的Web服务：该服务只支持Linux系统
 ./gos -m cmd -web-addr 0.0.0.0:9010 -web-pwd ant -web-decoder plain
 
 ## 启动**NPC**：配合NPS服务
@@ -36,15 +37,18 @@ Gos使用Go语言编写，理论上只要编译通过可支持各种系统（我
 
 # 更新
 
-	- 2021-07-08: 支持蚁剑**CUSTOM**类型
-	- 2021-07-04: 支持蚁剑**CMDLINUX**类型
+- 2021-07-08: 所有Web服务支持编码
+- 2021-07-08: 支持蚁剑**CUSTOM**类型
+- 2021-07-04: 支持蚁剑**CMDLINUX**类型
+
 
 # Todo
 
-	- [ ] **CUSTOM**服务支持Base64编码
-	- [ ] **CUSTOM** 服务内置MYSQL客户端
-	- [ ] **CUSTOM** 服务内置MSSQL客户端
-	- [x] **CUSTOM** 服务支持Windows
+- [ ] **CUSTOM** 服务内置MYSQL客户端
+- [ ] **CUSTOM** 服务内置MSSQL客户端
+- [x] **CUSTOM** 服务支持Windows
+- [x] **CUSTOM**服务支持Base64编码
+
 
 # 编译
 ```shell script
