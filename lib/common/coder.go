@@ -1,21 +1,19 @@
-package coder
+package common
 
 import (
 	"net/url"
-
-	"github.com/Wd0g/GoShell/lib/common"
 )
 
 func base64Decoder(val url.Values) url.Values {
 	for k, _ := range val {
-		newVal := common.Base64Decode(val.Get(k))
+		newVal := Base64Decode(val.Get(k))
 		val.Set(k, newVal)
 	}
 	return val
 }
 
 func base64Encoder(src string) string {
-	return common.Base64Encode(src)
+	return Base64Encode(src)
 }
 
 func plainDecoder(val url.Values) url.Values {

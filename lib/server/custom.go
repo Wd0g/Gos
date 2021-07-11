@@ -2,6 +2,7 @@ package server
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"net/url"
 
@@ -15,10 +16,13 @@ type Custom struct {
 }
 
 func (c Custom) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	req.ParseForm()
+	// 解析参数，解码参数
+	_ = req.ParseForm()
 	req.PostForm = c.Decoder(req.PostForm)
-	// 检测参数
+
 	args := req.PostFormValue(c.Pwd)
+	log.Printf("<-- %s\tFlag:%s\n", req.RemoteAddr, args)
+	// 密码参数不能为空
 	if args == "" {
 		return
 	}
