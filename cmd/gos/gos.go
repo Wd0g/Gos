@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"log"
 	"net/http"
 
 	"github.com/Wd0g/GoShell/lib/common"
@@ -30,7 +31,7 @@ func main() {
 		return
 	}
 
-	//var handler http.Handler
+	var err error
 	switch *mode {
 	case "cmd":
 		handler := server.Cmd{
@@ -38,7 +39,7 @@ func main() {
 			Decoder: common.NewDecoder(*webDecoder),
 			Encoder: common.NewEncoder(*webEncoder),
 		}
-		http.ListenAndServe(*webAddr, handler)
+		err = http.ListenAndServe(*webAddr, handler)
 
 	case "custom":
 		handler := server.Custom{
@@ -46,7 +47,9 @@ func main() {
 			Decoder: common.NewDecoder(*webDecoder),
 			Encoder: common.NewEncoder(*webEncoder),
 		}
-		http.ListenAndServe(*webAddr, handler)
+		err = http.ListenAndServe(*webAddr, handler)
 	}
-
+	if err != nil {
+		log.Fatal(err)
+	}
 }
