@@ -63,7 +63,9 @@ func FileTree(dir string) (res string, err error) {
 			fileSize int64
 		)
 		fileName = file.Name()
-		if file.IsDir() {
+
+		// fileMode的IsDir如果遇到软连接的目录会返回flase,所以需要重新通过文件mode判断
+		if file.IsDir() || (file.Mode()&os.ModeSymlink) != 0 {
 			fileName += "/"
 		}
 
