@@ -52,8 +52,8 @@ Gos使用Go语言编写，理论上只要编译通过可支持各种系统（我
 
 # 编译
 ```shell script
-cd cmd/GoShell
-CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -trimpath GoShell.go
+cd cmd/gos
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -trimpath gos.go
 ```
 
 # 其他
