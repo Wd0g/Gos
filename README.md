@@ -19,7 +19,7 @@ Gos使用Go语言编写，理论上只要编译通过可支持各种系统（我
 而`CUSTOM`类型内置了~~各种数据库的客户端~~（暂时未添加，会有的）
 
 
-让人高兴的是，Gos还简单内置了**[NPS](https://github.com/ehang-io/nps)**的客户端，配合NPS服务可在各种内网环境中自由穿梭
+让人高兴的是，Gos还简单内置了[**NPS**](https://github.com/ehang-io/nps)的客户端，配合NPS服务可在各种内网环境中自由穿梭
 
 # 使用
 
@@ -37,6 +37,7 @@ Gos使用Go语言编写，理论上只要编译通过可支持各种系统（我
 
 # 更新
 
+- 2021-07-26: 修复：修改文件时间因为非本地时区而导致的实际修改时间和提交修改时间不一致的问题
 - 2021-07-08: 所有Web服务支持编码
 - 2021-07-08: 支持蚁剑**CUSTOM**类型
 - 2021-07-04: 支持蚁剑**CMDLINUX**类型
@@ -52,8 +53,8 @@ Gos使用Go语言编写，理论上只要编译通过可支持各种系统（我
 
 # 编译
 ```shell script
-cd cmd/GoShell
-CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -trimpath GoShell.go
+cd cmd/gos
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -trimpath gos.go
 ```
 
 # 其他
