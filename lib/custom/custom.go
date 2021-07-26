@@ -158,7 +158,7 @@ func CreateDir(dir string) (res string, err error) {
 }
 
 func ModifyFileOrDirTime(srcFile, newTime string) (res string, err error) {
-	modTime, err := time.Parse("2006-01-02 15:04:05", newTime)
+	modTime, err := time.ParseInLocation("2006-01-02 15:04:05", newTime, time.Local)
 	if err != nil {
 		return "0", err
 	}
