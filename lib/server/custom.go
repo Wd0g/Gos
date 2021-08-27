@@ -65,7 +65,15 @@ func (c Custom) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		res = fmt.Sprintf("ERROR://%s", err.Error())
 	}
-	resByte := append([]byte("->|"), []byte(c.Encoder(res))...)
+
+	var resByte []byte
+	switch args {
+	// 客户下载文件时，不需要编码文件内容
+	case "F":
+		resByte = append([]byte("->|"), []byte(res)...)
+	default:
+		resByte = append([]byte("->|"), []byte(c.Encoder(res))...)
+	}
 	resByte = append(resByte, []byte("|<-")...)
 	w.Write(resByte)
 	return
