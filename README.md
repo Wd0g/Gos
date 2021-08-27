@@ -60,3 +60,5 @@ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -trimpath gos.go
 # 其他
 
 关于Gos的名称，一开始是叫GoShell，后来发现名字太长打起来比较麻烦就改为Gos了
+
+忽然发现中文名可以叫**狗屎**
