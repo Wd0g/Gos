@@ -1,4 +1,4 @@
-# GoShell
+# Gos
 Gos是一款专为[**蚁剑**](https://github.com/AntSwordProject/antSword/)编写的WebShell服务工具，使用蚁剑配合Gos内置的Web服务可轻松管理各种缺乏动态脚本环境的服务器
 
 蚁剑中支持的Shell类型：
