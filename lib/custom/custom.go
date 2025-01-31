@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Wd0g/GoShell/lib/common"
+	"github.com/Wd0g/Gos/lib/common"
 )
 
 func BaseInfo() (res string, err error) {
@@ -128,7 +128,7 @@ func UploadFile(filename, content string) (res string, err error) {
 	return WriteFile(filename, plainContent)
 }
 
-//TODO: 暂时只移动文件（不知道啥场景会复制文件夹）
+// TODO: 暂时只移动文件（不知道啥场景会复制文件夹）
 func CopyFileOrDir(srcFile, dstFile string) (res string, err error) {
 	err = common.CopyFile(srcFile, dstFile)
 	if err != nil {

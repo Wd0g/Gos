@@ -6,8 +6,8 @@ import (
 	"net/http"
 
 	"ehang.io/nps/client"
-	"github.com/Wd0g/GoShell/lib/common"
-	"github.com/Wd0g/GoShell/lib/server"
+	"github.com/Wd0g/Gos/lib/common"
+	"github.com/Wd0g/Gos/lib/server"
 )
 
 var (

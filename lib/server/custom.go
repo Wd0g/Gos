@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/Wd0g/GoShell/lib/custom"
+	"github.com/Wd0g/Gos/lib/custom"
 )
 
 type Custom struct {

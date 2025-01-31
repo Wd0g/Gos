@@ -1,4 +1,4 @@
-name: Release Go Project
+name: Release Gos
 
 on:
   push:

@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/Wd0g/GoShell/lib/common"
+	"github.com/Wd0g/Gos/lib/common"
 )
 
 type Cmd struct {
