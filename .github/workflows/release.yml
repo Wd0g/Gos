@@ -1,12 +1,6 @@
 name: Release Go Project
 
 on:
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: 'Tag for release (e.g., v1.0.0)'
-        required: true
-        type: string
   push:
     tags:
       - "v*" # 当推送包含 v 开头的tag时触发，例如 v1.0.0
@@ -33,7 +27,6 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.event.ref }}
           files: |
             build/gos-linux-amd64
             build/gos-linux-arm64
