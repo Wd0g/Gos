@@ -28,6 +28,7 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ github.event.ref }}
           files: |
             build/gos-linux-amd64
             build/gos-linux-arm64
